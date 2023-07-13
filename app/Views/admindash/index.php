@@ -16,7 +16,54 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/style2.css') ?>">
     <!-- endinject -->
     <link rel="shortcut icon" href="<?= base_url('assets/images/favicon.png') ?>" />
-  </head>
+	
+	    <!-- jquery -->
+		<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+    <!-- datatables -->
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+
+    <link href="https://cdn.datatables.net/v/dt/dt-1.13.4/af-2.5.3/b-2.3.6/b-colvis-2.3.6/b-html5-2.3.6/b-print-2.3.6/cr-1.6.2/date-1.4.1/fc-4.2.2/fh-3.3.2/kt-2.8.2/r-2.4.1/rg-1.3.1/rr-1.3.3/sc-2.1.1/sb-1.4.2/sp-2.1.2/sl-1.6.2/sr-1.2.2/datatables.min.css" rel="stylesheet"/>
+ 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+	<script src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.13.4/b-2.3.6/b-html5-2.3.6/b-print-2.3.6/cr-1.6.2/date-1.4.1/fc-4.2.2/fh-3.3.2/rg-1.3.1/rr-1.3.3/sb-1.4.2/sp-2.1.2/sl-1.6.2/sr-1.2.2/datatables.min.js" defer></script>
+
+
+	<script>
+      $(document).ready( function () {
+          $('#datatable').DataTable( {
+            select: {
+                style: 'single',
+                toggleable: true
+            },
+            responsive: true,
+            altEditor: true,     // Enable altEditor
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'excel', 'pdf',
+        {
+            extend: 'selected', // Bind to Selected row
+            text: 'Edit',
+            name: 'edit'        // do not change name
+        },
+        {
+            extend: 'selected', // Bind to Selected row
+            text: 'Delete',
+            name: 'delete'      // do not change name
+        },
+        {
+            text: 'Refresh',
+            name: 'refresh'      // do not change name
+        }
+            ]
+    });
+    
+      } );
+      $('#datatable').dtDateTime();
+    </script>
+</head>
   <body>
     <div class="container-scroller">
 				
@@ -306,386 +353,127 @@
 							</div>
 						</div>
 					</div>
-					<div class="row mt-4">
-						<div class="col-lg-8 grid-margin stretch-card">
-							<div class="card">
-								<div class="card-body">
-									<div class="row">
-										<div class="col-lg-4">
-											<h4 class="card-title">Sales Difference</h4>
-											<canvas id="salesDifference"></canvas>
-											<p class="mt-3 mb-4 mb-lg-0">Lorem ipsum dolor sit amet,
-												consectetur adipisicing elit.
-											</p>
-										</div>
-										<div class="col-lg-5">
-											<h4 class="card-title">Best Sellers</h4>
-											<div class="row">
-												<div class="col-sm-4">
-													<ul class="graphl-legend-rectangle">
-														<li><span class="bg-danger"></span>Automotive</li>
-														<li><span class="bg-warning"></span>Books</li>
-														<li><span class="bg-info"></span>Software</li>
-														<li><span class="bg-success"></span>Video games</li>
-													</ul>
-												</div>
-												<div class="col-sm-8 grid-margin">
-													<canvas id="bestSellers"></canvas>
-												</div>
-											</div>
-											<p class="mt-3 mb-4 mb-lg-0">Lorem ipsum dolor sit amet,
-												consectetur adipisicing elit.
-											</p>
-										</div>
-										<div class="col-lg-3">
-											<h4 class="card-title">Social Media Statistics</h4>
-											<div class="row">
-												<div class="col-sm-12">
-													<div class="progress progress-lg grouped mb-2">
-														<div class="progress-bar  bg-danger" role="progressbar" style="width: 40%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-														<div class="progress-bar bg-info" role="progressbar" style="width: 10%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-														<div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-														<div class="progress-bar bg-success" role="progressbar" style="width: 30%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-													</div>
-												</div>
-												<div class="col-sm-12">
-													<ul class="graphl-legend-rectangle">
-														<li><span class="bg-danger"></span>Instagram (15%)</li>
-														<li><span class="bg-warning"></span>Facebook (20%)</li>
-														<li><span class="bg-info"></span>Website (25%)</li>
-														<li><span class="bg-success"></span>Youtube (40%)</li>
-													</ul>
-												</div>
-											</div>
-											<p class="mb-0 mt-2">Lorem ipsum dolor sit amet,
-												consectetur adipisicing elit.
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 mb-3 mb-lg-0">
-							<div class="card congratulation-bg text-center">
-								<div class="card-body pb-0">
-									<img src="images/dashboard/face29.png" alt="">  
-									<h2 class="mt-3 text-white mb-3 font-weight-bold">Congratulations
-										<?= $userInfo['user']['name']; ?>
-									</h2>
-									<p>You have done 57.6% more sales today. 
-										Check your new badge in your profile.
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- <div class="row">
-						<div class="col-sm-8 flex-column d-flex stretch-card">
-							<div class="row">
-								<div class="col-lg-4 d-flex grid-margin stretch-card">
-									<div class="card bg-primary">
-										<div class="card-body text-white">
-											<h3 class="font-weight-bold mb-3">18,39 (75GB)</h3>
-											<div class="progress mb-3">
-												<div class="progress-bar  bg-warning" role="progressbar" style="width: 40%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-											</div>
-											<p class="pb-0 mb-0">Bandwidth usage</p>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-4 d-flex grid-margin stretch-card">
-									<div class="card sale-diffrence-border">
-										<div class="card-body">
-											<h2 class="text-dark mb-2 font-weight-bold">$6475</h2>
-											<h4 class="card-title mb-2">Sales Difference</h4>
-											<small class="text-muted">APRIL 2019</small>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-4 d-flex grid-margin stretch-card">
-									<div class="card sale-visit-statistics-border">
-										<div class="card-body">
-											<h2 class="text-dark mb-2 font-weight-bold">$3479</h2>
-											<h4 class="card-title mb-2">Visit Statistics</h4>
-											<small class="text-muted">APRIL 2019</small>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-12 grid-margin d-flex stretch-card">
-									<div class="card">
-										<div class="card-body">
-											<div class="d-flex align-items-center justify-content-between">
-												<h4 class="card-title mb-2">Sales Difference</h4>
-												<div class="dropdown">
-													<a href="#" class="text-success btn btn-link  px-1"><i class="mdi mdi-refresh"></i></a>
-													<a href="#" class="text-success btn btn-link px-1 dropdown-toggle dropdown-arrow-none" data-bs-toggle="dropdown" id="settingsDropdownsales">
-														<i class="mdi mdi-dots-horizontal"></i></a>
-														<div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="settingsDropdownsales">
-															<a class="dropdown-item">
-																<i class="mdi mdi-grease-pencil text-primary"></i>
-																Edit
-															</a>
-															<a class="dropdown-item">
-																<i class="mdi mdi-delete text-primary"></i>
-																Delete
-															</a>
-														</div>
-												</div>
-											</div>
-											<div>
-												<ul class="nav nav-tabs tab-no-active-fill" role="tablist">
-													<li class="nav-item">
-														<a class="nav-link active ps-2 pe-2" id="revenue-for-last-month-tab" data-bs-toggle="tab" href="#revenue-for-last-month" role="tab" aria-controls="revenue-for-last-month" aria-selected="true">Revenue for last month</a>
-													</li>
-													<li class="nav-item">
-														<a class="nav-link ps-2 pe-2" id="server-loading-tab" data-bs-toggle="tab" href="#server-loading" role="tab" aria-controls="server-loading" aria-selected="false">Server loading</a>
-													</li>
-													<li class="nav-item">
-														<a class="nav-link ps-2 pe-2" id="data-managed-tab" data-bs-toggle="tab" href="#data-managed" role="tab" aria-controls="data-managed" aria-selected="false">Data managed</a>
-													</li>
-													<li class="nav-item">
-														<a class="nav-link ps-2 pe-2" id="sales-by-traffic-tab" data-bs-toggle="tab" href="#sales-by-traffic" role="tab" aria-controls="sales-by-traffic" aria-selected="false">Sales by traffic</a>
-													</li>
-												</ul>
-												<div class="tab-content tab-no-active-fill-tab-content">
-													<div class="tab-pane fade show active" id="revenue-for-last-month" role="tabpanel" aria-labelledby="revenue-for-last-month-tab">
-														<div class="d-lg-flex justify-content-between">
-															<p class="mb-4">+5.2% vs last 7 days</p>
-															<div id="revenuechart-legend" class="revenuechart-legend">f</div>
-														</div>
-														<canvas id="revenue-for-last-month-chart"></canvas>
-													</div>
-													<div class="tab-pane fade" id="server-loading" role="tabpanel" aria-labelledby="server-loading-tab">
-														<div class="d-flex justify-content-between">
-															<p class="mb-4">+5.2% vs last 7 days</p>
-															<div id="serveLoading-legend" class="revenuechart-legend">f</div>
-														</div>
-														<canvas id="serveLoading"></canvas>
-													</div>
-													<div class="tab-pane fade" id="data-managed" role="tabpanel" aria-labelledby="data-managed-tab">
-														<div class="d-flex justify-content-between">
-															<p class="mb-4">+5.2% vs last 7 days</p>
-															<div id="dataManaged-legend" class="revenuechart-legend">f</div>
-														</div>
-														<canvas id="dataManaged"></canvas>
-													</div>
-													<div class="tab-pane fade" id="sales-by-traffic" role="tabpanel" aria-labelledby="sales-by-traffic-tab">
-														<div class="d-flex justify-content-between">
-															<p class="mb-4">+5.2% vs last 7 days</p>
-															<div id="salesTrafic-legend" class="revenuechart-legend">f</div>
-														</div>
-														<canvas id="salesTrafic"></canvas>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4 flex-column d-flex stretch-card">
-							<div class="row flex-grow">
-								<div class="col-sm-12 grid-margin stretch-card">
-									<div class="card">
-										<div class="card-body">
-											<div class="row">
-												<div class="col-lg-8">
-													<h3 class="font-weight-bold text-dark">Canada,Ontario</h3>
-													<p class="text-dark">Monday 3.00 PM</p>
-													<div class="d-lg-flex align-items-baseline mb-3">
-														<h1 class="text-dark font-weight-bold">23<sup class="font-weight-light"><small>o</small><small class="font-weight-medium">c</small></sup></h1>
-														<p class="text-muted ms-3">Partly cloudy</p>
-													</div>
-												</div>
-												<div class="col-lg-4">
-													<div class="position-relative">
-														<img src="images/dashboard/live.png" class="w-100" alt="">
-														<div class="live-info badge badge-success">Live</div>
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-sm-12 mt-4 mt-lg-0">
-													<div class="bg-primary text-white px-4 py-4 card">
-														<div class="row">
-															<div class="col-sm-6 pl-lg-5">
-																<h2>$1635</h2>
-																<p class="mb-0">Your Iincome</p>
-															</div>
-															<div class="col-sm-6 climate-info-border mt-lg-0 mt-2">
-																<h2>$2650</h2>
-																<p class="mb-0">Your Spending</p>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="row pt-3 mt-md-1">
-												<div class="col">
-													<div class="d-flex purchase-detail-legend align-items-center">
-														<div id="circleProgress1" class="p-2"></div>
-														<div>
-															<p class="font-weight-medium text-dark text-small">Sessions</p>
-															<h3 class="font-weight-bold text-dark  mb-0">26.80%</h3>
-														</div>
-													</div>
-												</div>
-												<div class="col">
-													<div class="d-flex purchase-detail-legend align-items-center">
-														<div id="circleProgress2" class="p-2"></div>
-														<div>
-															<p class="font-weight-medium text-dark text-small">Users</p>
-															<h3 class="font-weight-bold text-dark  mb-0">56.80%</h3>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-12 grid-margin stretch-card">
-									<div class="card">
-										<div class="card-body">
-											<div class="row">
-												<div class="col-sm-12">
-													<div class="d-flex align-items-center justify-content-between">
-														<h4 class="card-title mb-0">Visits Today</h4>
-														<div class="dropdown">
-															<a href="#" class="text-success btn btn-link  px-1"><i class="mdi mdi-refresh"></i></a>
-															<a href="#" class="text-success btn btn-link px-1 dropdown-toggle dropdown-arrow-none" data-bs-toggle="dropdown" id="profileDropdownvisittoday"><i class="mdi mdi-dots-horizontal"></i></a>
-															<div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdownvisittoday">
-																<a class="dropdown-item">
-																	<i class="mdi mdi-grease-pencil text-primary"></i>
-																	Edit
-																</a>
-																<a class="dropdown-item">
-																	<i class="mdi mdi-delete text-primary"></i>
-																	Delete
-																</a>
-															</div>
-														</div>
-													</div>
-													<p class="mt-1">Calculated in last 30 days</p>
-													<div class="d-lg-flex align-items-center justify-content-between">
-														<h1 class="font-weight-bold text-dark">4332</h1>
-														<div class="mb-3">
-															<button type="button" class="btn btn-outline-light text-dark font-weight-normal">Day</button>
-															<button type="button" class="btn btn-outline-light text-dark font-weight-normal">Month</button>
-														</div>
-													</div>
-													<canvas id="visitorsToday"></canvas>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-lg-2 grid-margin stretch-card">
-							<div class="card">
-								<div class="card-body pb-0">
-									<div class="d-flex align-items-center justify-content-between">
-										<h2 class="text-success font-weight-bold">18390</h2>
-										<i class="mdi mdi-account-outline mdi-18px text-dark"></i>
-									</div>
-								</div>
-								<canvas id="newClient"></canvas>
-								<div class="line-chart-row-title">MY NEW CLIENTS</div>
-							</div>
-						</div>
-						<div class="col-lg-2 grid-margin stretch-card">
-							<div class="card">
-								<div class="card-body pb-0">
-									<div class="d-flex align-items-center justify-content-between">
-										<h2 class="text-danger font-weight-bold">839</h2>
-										<i class="mdi mdi-refresh mdi-18px text-dark"></i>
-									</div>
-								</div>
-								<canvas id="allProducts"></canvas>
-								<div class="line-chart-row-title">All Products</div>
-							</div>
-						</div>
-						<div class="col-lg-2 grid-margin stretch-card">
-							<div class="card">
-								<div class="card-body pb-0">
-									<div class="d-flex align-items-center justify-content-between">
-										<h2 class="text-info font-weight-bold">244</h2>
-										<i class="mdi mdi-file-document-outline mdi-18px text-dark"></i>
-									</div>
-								</div>
-								<canvas id="invoices"></canvas>
-								<div class="line-chart-row-title">NEW INVOICES</div>
-							</div>
-						</div>
-						<div class="col-lg-2 grid-margin stretch-card">
-							<div class="card">
-								<div class="card-body pb-0">
-									<div class="d-flex align-items-center justify-content-between">
-										<h2 class="text-warning font-weight-bold">3259</h2>
-										<i class="mdi mdi-folder-outline mdi-18px text-dark"></i>
-									</div>
-								</div>
-								<canvas id="projects"></canvas>
-								<div class="line-chart-row-title">All PROJECTS</div>
-							</div>
-						</div>
-						<div class="col-lg-2 grid-margin stretch-card">
-							<div class="card">
-								<div class="card-body pb-0">
-									<div class="d-flex align-items-center justify-content-between">
-										<h2 class="text-secondary font-weight-bold">586</h2>
-										<i class="mdi mdi-cart-outline mdi-18px text-dark"></i>
-									</div>
-								</div>
-								<canvas id="orderRecieved"></canvas>
-								<div class="line-chart-row-title">Orders Received</div>
-							</div>
-						</div>
-						<div class="col-lg-2 grid-margin stretch-card">
-							<div class="card">
-								<div class="card-body pb-0">
-									<div class="d-flex align-items-center justify-content-between">
-										<h2 class="text-dark font-weight-bold">7826</h2>
-										<i class="mdi mdi-cash text-dark mdi-18px"></i>
-									</div>
-								</div>
-								<canvas id="transactions"></canvas>
-								<div class="line-chart-row-title">TRANSACTIONS</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-6 grid-margin grid-margin-md-0 stretch-card">
-							<div class="card">
-								<div class="card-body">
-									<div class="d-flex align-items-center justify-content-between">
-										<h4 class="card-title">Support Tracker</h4>
-										<h4 class="text-success font-weight-bold">Tickets<span class="text-dark ms-3">163</span></h4>
-									</div>
-									<div id="support-tracker-legend" class="support-tracker-legend"></div>
-									<canvas id="supportTracker"></canvas>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-6 grid-margin grid-margin-md-0 stretch-card">
-							<div class="card">
-								<div class="card-body">
-									<div class="d-lg-flex align-items-center justify-content-between mb-4">
-										<h4 class="card-title">Product Orders</h4>
-										<p class="text-dark">+5.2% vs last 7 days</p>
-									</div>
-									<div class="product-order-wrap padding-reduced">
-										<div id="productorder-gage" class="gauge productorder-gage"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				 -->
+					<div id="user-list" class="row ">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+        <section class="ftco-section">
+		<div class="container">
+
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">User list</h2>
+				</div>
+			</div>
+
+      <div class="row justify-content-left">
+				<div class="col-md-4 text-center mb-5">
+          <a class="nav-link btn btn-success create-new-button" href="/users/register">Add New User +</a>
+				</div>
+			</div>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open modal for @fat</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('#exampleModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var recipient = button.data('whatever') // Extract info from data-* attributes
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var modal = $(this)
+  modal.find('.modal-title').text('New message to ' + recipient)
+  modal.find('.modal-body input').val(recipient)
+})
+</script>
+
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="table-wrap">
+						<table class="table display" id="datatable" >
+						  <thead>
+						    <tr>
+								<th> Name </th>
+								<th> Email </th>
+								<th> Creation date</th>
+								<th> Status</th>
+								<th> Actions</th>
+						    </tr>
+						  </thead>
+              <?php
+              if(!empty($users) && is_array($users)): 
+
+              // view_cell('\App\Libraries\Users::userlist', ['title'=>$userid]);
+                  ?>
+              <tbody>
+                <?php 
+                foreach($users as $users): ?>
+                    <tr>
+                      <td id='name_<?= esc($users['id']) ?>' ><?= esc($users['name']) ?></td>
+                      <td id='email_<?= esc($users['id']) ?>' ><?= esc($users['email']) ?></td>
+                      <td id='date_<?= esc($users['id']) ?>' ><?= esc($users['created_at']) ?></td>
+                      <td id='status_<?= esc($users['id']) ?>' ><?php 
+					  	if($users['status'] == 0){echo "Inactive";}
+						else if ($users['status'] == 1){echo "Active";}
+						else if ($users['status'] == 2){echo "Deactived";}
+					   ?></td>
+                      
+                    <td><button type="button" class="btn btn-secondary btn-sm" id='edit_<?= esc($users['id']) ?>' onclick='editUser(<?= esc($users['id']) ?>)'>Edit</button>
+                      <button type="button" class="btn btn-secondary btn-sm" id="delete_<?= esc($users['id']) ?>" data-href="/users/delete/<?= esc($users['id']) ?>">Delete</button>
+                    </td>
+
+                  
+                    </tr>
+                    <?php 
+                endforeach;?>
+                                 
+              </tbody>
+              <?php else: ?>
+                
+                <tbody>
+              <p class="error" >No users were found</p>
+                </tbody>
+              <?php endif ;?>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
 				</div>
 				<!-- content-wrapper ends -->
 				<!-- partial:partials/_footer.html -->

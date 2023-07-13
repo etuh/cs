@@ -54,6 +54,9 @@ $routes->group('/', ['filter'=>'AuthCheck'], static function ($routes) {
     $routes->get('', 'UserController::index', ['as' => 'home']);
 });
 
+$routes->get('/users/', 'UserController::users');
+
+
 
 /*
  * --------------------------------------------------------------------

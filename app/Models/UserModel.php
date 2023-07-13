@@ -8,5 +8,14 @@ class UserModel extends Model
 {
     protected $table      = 'users';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['name', 'email', 'password'];
+    protected $allowedFields = ['name', 'email', 'password','created_at'];
+
+    public function getUsers($userid = null)
+    {
+        if (!$userid){
+            return $this->findAll();
+        }
+        return $this->where('userid',$userid)->findAll();
+
+    }
 }
