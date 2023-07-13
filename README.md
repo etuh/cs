@@ -39,7 +39,7 @@ $ git clone https://github.com/etuh/cs.git
 ```
 2. Navigate to the project directory
 ```sh
-$ cs cs
+$ cd cs
 ```
 3. Install the project dependencies using Composer
 ```sh
