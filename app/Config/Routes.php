@@ -50,9 +50,13 @@ $routes->group('auth', static function ($routes) {
     
 });
 
-$routes->group('/', ['filter'=>'AuthCheck'], static function ($routes) {
-    $routes->get('', 'UserController::index', ['as' => 'home']);
-});
+// $routes->group('/', ['filter'=>'AuthCheck'], static function ($routes) {
+//     $routes->get('', 'UserController::index', ['as' => 'home']);
+// });
+
+$routes->get('/products/', 'Service::index');
+$routes->get('/products/(:num?)', 'Service::detail');
+
 
 $routes->get('/users/', 'UserController::users');
 
