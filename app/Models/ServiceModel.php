@@ -16,7 +16,6 @@ class ServiceModel extends Model
             return $this->findAll();
         }
         return $this->where('id',$id)->findAll();
-
     }
 	public function addService($data)
 	{

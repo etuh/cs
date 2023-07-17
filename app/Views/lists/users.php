@@ -89,6 +89,7 @@
                     <tr>
                       <td id='name_<?= esc($users['id']) ?>' ><?= esc($users['name']) ?></td>
                       <td id='email_<?= esc($users['id']) ?>' ><?= esc($users['email']) ?></td>
+                      <td id='status_<?= esc($users['id']) ?>' ><?= esc($users['status']) ?></td>
                       <td id='date_<?= esc($users['id']) ?>' ><?= esc($users['created_at']) ?></td>
                       
                     <td><button type="button" class="btn btn-secondary btn-sm" id='edit_<?= esc($users['id']) ?>' onclick='editUser(<?= esc($users['id']) ?>)'>Edit</button>
@@ -107,18 +108,7 @@
               <p class="error" >No users were found</p>
                 </tbody>
               <?php endif ;
-                  function displaySidByUid($array, $userId) {
-                    foreach ($array as $item) {
-                        if ($item['uid'] == $userId) return $item['sid'];
-                    }
-                    return null;
-                }
-                function displayTByUid($array, $userId) {
-                  foreach ($array as $item) {
-                      if ($item['uid'] == $userId) return $item['t'];
-                  }
-                  return null;
-              }?>
+                  ?>
             </table>
           </div>
         </div>

@@ -15,7 +15,8 @@ class Service extends BaseController
     public function detail($id)
     {
         $model = new ServiceModel();
-        $data['service'] = $model->getServices($id);
+        $data['service'] = $model->getServices($id)[0];
+        return view('home/product_detail', $data);
     }
 }
 
